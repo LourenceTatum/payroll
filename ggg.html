@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payroll Result</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+
+    body {
+      background: radial-gradient(circle, #000000 30%, #1a1a1a 100%);
+      color: white;
+      text-align: center;
+      font-family: 'Arial', sans-serif;
+    }
+
+    h1 {
+      font-family: 'UnifrakturCook', cursive;
+      font-size: 40px;
+      color: silver;
+      margin-top: 20px;
+    }
+
+    .output {
+      background: rgba(255,255,255,0.1);
+      border: 3px solid silver;
+      border-radius: 20px;
+      padding: 20px;
+      width: 400px;
+      margin: 20px auto;
+    }
+
+    .details, .deductions {
+      text-align: left;
+      margin-left: 30px;
+      line-height: 1.6;
+    }
+
+    .netpay {
+      margin-top: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      color: silver;
+      font-family: 'UnifrakturCook';
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: silver;
+      color: black;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: white;
+      box-shadow: 0 0 10px silver;
+    }
+
+    .line {
+      border-bottom: 1px solid gray;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>PAYROLL RESULT</h1>
+  <div class="output" id="output"></div>
+
+  <button onclick="goBack()">BACK</button>
+
+  <script>
+    const data = JSON.parse(localStorage.getItem('payrollData'));
+
+    if (data) {
+      const gross = data.rate * data.days;
+      const sss = gross * 0.05;
+      const pagibig = gross * 0.03;
+      const philhealth = gross * 0.02;
+      const tax = gross * 0.05;
+      const totalDeduction = sss + pagibig + philhealth + tax;
+      const net = gross - totalDeduction;
+
+      document.getElementById('output').innerHTML = `
+        <div class="details">
+          <p><strong>ID:</strong> ${data.id}</p>
+          <p><strong>NAME:</strong> ${data.lname}, ${data.fname} ${data.mname}</p>
+          <p><strong>POSITION:</strong> ${data.pos}</p>
+          <div class="line"></div>
+          <p><strong>RATE:</strong> ${parseFloat(data.rate).toFixed(2)}</p>
+          <p><strong>DAYS:</strong> ${data.days}</p>
+          <p><strong>GROSS PAY:</strong> ${gross.toFixed(2)}</p>
+        </div>
+        <div class="deductions">
+          <h3>DEDUCTIONS</h3>
+          <p>SSS (5%): ${sss.toFixed(2)}</p>
+          <p>PAG-IBIG (3%): ${pagibig.toFixed(2)}</p>
+          <p>PHILHEALTH (2%): ${philhealth.toFixed(2)}</p>
+          <p>TAX (5%): ${tax.toFixed(2)}</p>
+          <div class="line"></div>
+          <p><strong>TOTAL DEDUCTION:</strong> ${totalDeduction.toFixed(2)}</p>
+        </div>
+        <div class="netpay">NET PAY: ${net.toFixed(2)}</div>
+      `;
+    } else {
+      document.getElementById('output').innerHTML = `<p>No data found. Please go back to the form.</p>`;
+    }
+
+    function goBack() {
+      window.location.href = "gggggg.html";
+    }
+  </script>
+</body>
+</html>

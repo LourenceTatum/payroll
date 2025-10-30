@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payroll Program</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+
+    body {
+      background: radial-gradient(circle, #000000 30%, #1a1a1a 100%);
+      color: white;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'UnifrakturCook', cursive;
+      font-size: 40px;
+      color: silver;
+      letter-spacing: 2px;
+      margin-top: 20px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      border: 3px solid silver;
+      border-radius: 20px;
+      padding: 20px;
+      width: 400px;
+      margin: 20px auto;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-family: 'UnifrakturCook', cursive;
+      color: silver;
+    }
+
+    input {
+      width: 90%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 2px solid silver;
+      border-radius: 10px;
+      background: #111;
+      color: white;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: silver;
+      color: black;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: white;
+      box-shadow: 0 0 10px silver;
+    }
+
+    body {
+  background: url('CHROMEHEARTS.png') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+}
+
+
+
+
+  </style>
+</head>
+<body>
+  <h1>PAYROLL PROGRAM</h1>
+
+  <div class="container">
+    <label>ID NUMBER</label>
+    <input type="text" id="idnum">
+
+    <label>LAST NAME:</label>
+    <input type="text" id="lname">
+
+    <label>FIRST NAME:</label>
+    <input type="text" id="fname">
+
+    <label>MIDDLE NAME:</label>
+    <input type="text" id="mname">
+
+    <label>POSITION:</label>
+    <input type="text" id="pos">
+
+    <label>RATE:</label>
+    <input type="number" id="rate">
+
+    <label>WORK DAYS:</label>
+    <input type="number" id="days">
+
+    <button onclick="saveData()">SUBMIT</button>
+  </div>
+
+  <script>
+    function saveData() {
+      const data = {
+        id: document.getElementById('idnum').value,
+        lname: document.getElementById('lname').value,
+        fname: document.getElementById('fname').value,
+        mname: document.getElementById('mname').value,
+        pos: document.getElementById('pos').value,
+        rate: document.getElementById('rate').value,
+        days: document.getElementById('days').value
+      };
+
+      if (!data.id || !data.lname || !data.fname || !data.pos || !data.rate || !data.days) {
+        alert("Please fill in all fields!");
+        return;
+      }
+
+      localStorage.setItem('payrollData', JSON.stringify(data));
+      window.location.href = "ggg.html";
+    }
+  </script>
+</body>
+</html>
